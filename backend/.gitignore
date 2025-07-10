@@ -2,6 +2,12 @@
 # Node modules
 node_modules/
 
+
+
+# Ignore all .js files in the src/ directory and its subdirectories
+src/**/*.js
+
+
 # Logs
 logs
 *.log
