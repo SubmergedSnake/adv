@@ -8,6 +8,19 @@ and retrieves data from the database.
 `/api/defects` - returns all defects
 
 
+## Development
+
+Use the `dev` while developing:
+
+```
+npm run dev
+```
+
+This will start the backend server on port 3000 by default.
+While developing, make sure to start the database container manually 
+and expose port 27107.
+
+
 ## Running the backend 
 
 The backend is ran using the `compose.yml` -file found in the root of this project, using the command
