@@ -1,6 +1,5 @@
 {
   "name": "backend",
-  "type": "module",
   "version": "1.0.0",
   "description": "The backend for the Aircraft Defect Viewer handles API calls  and retrieves data from the database.",
   "main": "index.js",
