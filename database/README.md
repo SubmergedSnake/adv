@@ -1,6 +1,6 @@
 # The database
 
-This containerized mongodb database contains the aircraft defect data.
+The containerized mongodb database contains the aircraft defect data.
 
 The data is imported upon startup from the `aircraft_defects.json` -file
 found in this directory.
@@ -20,7 +20,7 @@ This will start all the services related to the Aircraft Defect Viewer: frontend
 
 You can run the container individually, as well.
 
-To do that, you first need to build the container from the image:
+To do that, you first need to build the the image:
 
 ```
 docker build -t adv-database .
