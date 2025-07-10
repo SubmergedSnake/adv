@@ -29,7 +29,7 @@ docker build -t adv-database .
 and then run it with:
 
 ```
-docker run --name adv-database adv-database
+docker run  -p 27017:27017 --name adv-database adv-database
 ```
 
 

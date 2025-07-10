@@ -13,4 +13,12 @@ detected defects for the fleet.
 
 ## Setup instructions
 
+To run Aircraft Defect Viewer, run 
+```
+docker compose up
+```
+in the root directory.
+
+This will start all the required services, including frontend, backend and database.
+
 ## Future improvements

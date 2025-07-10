@@ -1,4 +1,9 @@
 services:
   database:
     build: ./database
+  backend:
+    build: ./backend/
+    depends_on:
+      - database
+
 
