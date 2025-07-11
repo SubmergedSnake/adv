@@ -1,108 +1,21 @@
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import type { IDefect } from "../types/IDefect";
 import Defect from "./Defect";
+import { fetchDefects } from "../api/fetchDefects";
 
 export default function DefectList() {
-  const defects: IDefect[] = [
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-    {
-      id: "ug5hfzx4",
-      aircraft_registration: "ME-AAS",
-      reported_at: "2024-07-20T12:59:37.142000Z",
-      defect_type: "Vibration anomaly",
-      description:
-        "Unusual vibration detected in engine nacelle.Unusual vibration detected in engine nacelle.",
-      severity: "Medium",
-    },
-  ];
+  const queryClient = useQueryClient();
+  const {
+    isPending,
+    error,
+    data: defects,
+  } = useQuery({
+    queryKey: ["defects"],
+    queryFn: fetchDefects,
+  });
+
+  if (isPending) return "Loading...";
+  if (error) return "An error has occurred: " + error.message;
 
   return (
     <div className="rounded-lg outline dark:bg-gray-950/50 m-[1em] p-[1em]">
@@ -118,7 +31,7 @@ export default function DefectList() {
           </tr>
         </thead>
         <tbody>
-          {defects.map((d) => (
+          {defects.map((d: IDefect) => (
             <Defect defect={d} />
           ))}
         </tbody>

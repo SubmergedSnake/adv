@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "joi": "^17.13.3",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.4",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.12",
     "eslint": "^9.30.1",
