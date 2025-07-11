@@ -1,11 +1,10 @@
 import typescript from '@rollup/plugin-typescript';
-import commonjs from '@rollup/plugin-commonjs';
 
 export default {
   input: 'src/server.ts',
   output: {
-    dir: 'output',
-    format: 'cjs',
+    dir: 'dist',
+    format: 'es',
   },
-  plugins: [typescript(), commonjs()],
+  plugins: [typescript()],
 };

@@ -2,10 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "The backend for the Aircraft Defect Viewer handles API calls  and retrieves data from the database.",
-  "main": "index.js",
   "scripts": {
     "build": "rollup --config",
-    "start": "node output/server.js",
+    "start": "node dist/server.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
     "lint": "eslint 'src/**/*.ts'"
   },
