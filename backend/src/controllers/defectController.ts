@@ -3,7 +3,6 @@ import { DefectCollection } from '../models/defectSchema';
 
 export const getDefects = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		console.log('Finding defects...')
 		const defects = await DefectCollection.find({});
 		res.json(defects)
 	}
