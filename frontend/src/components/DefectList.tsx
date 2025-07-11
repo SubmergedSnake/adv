@@ -32,7 +32,7 @@ export default function DefectList() {
         </thead>
         <tbody>
           {defects.map((d: IDefect) => (
-            <Defect defect={d} />
+            <Defect key={d.id} defect={d} />
           ))}
         </tbody>
       </table>
