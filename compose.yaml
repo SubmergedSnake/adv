@@ -1,9 +1,21 @@
 services:
   database:
+    container_name: adv-database
     build: ./database
+    ports:
+      - "27017:27017"
   backend:
+    container_name: adv-backend
     build: ./backend/
     depends_on:
       - database
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=adv-database
+      - DB_NAME=adv 
+      - DB_PORT=27017
+
+
 
 

@@ -20,6 +20,10 @@ This will start all the services related to the Aircraft Defect Viewer: frontend
 
 You can run the container individually, as well.
 
+```
+docker compose up database
+```
+
 To do that, you first need to build the the image:
 
 ```
@@ -29,11 +33,11 @@ docker build -t adv-database .
 and then run it with:
 
 ```
-docker run  -p 27017:27017 --name adv-database adv-database
+docker run  -p 27017:27017 --network adv adv-database
 ```
 
 
-## Inspecting the data
+## Inspectingt he data
 To inspect the data in the database, you'll need to enter the container interactively:
 
 ```

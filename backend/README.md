@@ -18,7 +18,7 @@ npm run dev
 
 This will start the backend server on port 3000 by default.
 While developing, make sure to start the database container manually 
-and expose port 27107.
+and expose port 27017.
 
 
 ## Running the backend 
@@ -43,7 +43,7 @@ docker build -t adv-backend .
 and then run it with:
 
 ```
-docker run -p 3000:3000 --name adv-backend adv-backend
+docker run -p 3000:3000 --network adv --name adv-backend adv-backend
 ```
 
 ## Referencs material

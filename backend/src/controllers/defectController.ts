@@ -1,11 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
-import { Defect } from '../models/defect';
+import { DefectCollection } from '../models/defectSchema';
 
-export const getDefects = (req: Request, res: Response, next: NextFunction) => {
+export const getDefects = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		res.json([{ id: 123, description: 'This is a defect' }]);
-	} catch (error) {
-		next(error);
+		console.log('Finding defects...')
+		const defects = await DefectCollection.find({});
+		res.json(defects)
+	}
+	catch (error) {
+		res.status(500).json({
+			status: "Failed",
+			message: error
+		})
 	}
 };
 
