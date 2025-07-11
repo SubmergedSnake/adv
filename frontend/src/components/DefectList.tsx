@@ -20,7 +20,7 @@ export default function DefectList() {
   return (
     <div className="rounded-lg outline dark:bg-gray-950/50 m-[1em] p-[1em]">
       <table className="border-collapse table-fixed">
-        <thead>
+        <thead className="sticky top-0 bg-gray-800 z-10">
           <tr>
             <th>ID</th>
             <th>Aircraft Registration</th>
