@@ -35,12 +35,12 @@ export default function Container() {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    console.log(`Handling input change for ${name}:${value}`);
-    setControls({ ...controls, [event.target.name]: event.target.value });
+    setControls({ ...controls, [name]: value });
   };
 
   if (error) return "There was an error loading the defects.";
   if (isPending) return "Loading...";
+
   return (
     <div className="flex">
       <QueryControls

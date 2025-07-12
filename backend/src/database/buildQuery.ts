@@ -1,6 +1,5 @@
 import { RootFilterQuery } from "mongoose";
 import { Defect } from "../models/defect";
-import { argv0 } from "process";
 
 export default (queryControls: Request['body']): RootFilterQuery<Defect> => {
 
