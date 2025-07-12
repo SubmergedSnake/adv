@@ -29,7 +29,6 @@ export default function Defect({ defect }: { defect: IDefect }) {
       id={defect.id}
       className="hover:bg-gray-700 rounded-xs"
     >
-      <td className={tdClass}>{defect.id}</td>
       <td className={tdClass}>{defect.aircraft_registration}</td>
       <td className={tdClass}>{defect.reported_at.toString()}</td>
       <td className={tdClass}>{defect.defect_type}</td>

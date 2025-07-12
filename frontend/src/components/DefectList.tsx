@@ -11,7 +11,6 @@ export default function DefectList({ defects }: DefectListProps) {
       <table className="border-collapse table-auto">
         <thead className="sticky top-0 bg-gray-800 z-10">
           <tr>
-            <th>ID</th>
             <th>Aircraft Registration</th>
             <th>Reported At</th>
             <th>Defect Type</th>
