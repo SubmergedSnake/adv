@@ -11,7 +11,7 @@ export default function Container() {
   const [controls, setControls] = useState<Partial<IQueryControls>>({});
 
   const debouncedSetControls = useMemo(
-    () => debounce((nextControls) => setDebouncedControls(nextControls), 1500),
+    () => debounce((nextControls) => setDebouncedControls(nextControls), 1000),
     [],
   );
 
