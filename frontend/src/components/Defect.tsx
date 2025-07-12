@@ -7,13 +7,10 @@ export default function Defect({ defect }: { defect: IDefect }) {
     switch (severity) {
       case "Low":
         return "bg-yellow-100";
-        break;
       case "Medium":
         return "bg-purple-100";
-        break;
       case "High":
         return "bg-red-100";
-        break;
       default:
         break;
     }
