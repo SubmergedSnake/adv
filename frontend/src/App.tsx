@@ -1,13 +1,9 @@
 import "./App.css";
+import Container from "./components/Container";
 import DefectList from "./components/DefectList";
 import { Header } from "./components/Header";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import QueryControls from "./components/QueryControls";
 
 function App() {
   const queryClient = new QueryClient();
@@ -15,7 +11,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <>
         <Header />
-        <DefectList />
+        <Container />
       </>
     </QueryClientProvider>
   );

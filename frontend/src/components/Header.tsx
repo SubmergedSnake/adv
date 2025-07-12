@@ -1,3 +1,3 @@
 export const Header = () => {
-  return <h1 className="">Aircraft Defect Viewer</h1>;
+  return <h1>Aircraft Defect Viewer</h1>;
 };

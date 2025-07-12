@@ -1,10 +1,9 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import type { IDefect } from "../types/IDefect";
 import Defect from "./Defect";
 import { fetchDefects } from "../api/fetchDefects";
 
 export default function DefectList() {
-  const queryClient = useQueryClient();
   const {
     isPending,
     error,
@@ -19,7 +18,7 @@ export default function DefectList() {
 
   return (
     <div className="rounded-lg outline dark:bg-gray-950/50 m-[1em] p-[1em]">
-      <table className="border-collapse table-fixed">
+      <table className="border-collapse table-auto">
         <thead className="sticky top-0 bg-gray-800 z-10">
           <tr>
             <th>ID</th>
