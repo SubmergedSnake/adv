@@ -17,16 +17,34 @@ export default function Container() {
     queryFn: ({ queryKey }) => fetchDefects(queryKey[1] as IQueryControls),
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value, event.target.id);
-    setControls({ ...controls, [event.target.id]: event.target.value });
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, name, id: value } = event.target;
+    let currentCheckboxes = [...(controls[name as keyof IQueryControls] || [])];
+    if (checked) {
+      if (!currentCheckboxes.includes(value)) {
+        currentCheckboxes.push(value);
+      }
+    } else {
+      currentCheckboxes = currentCheckboxes.filter(
+        (currentValue) => currentValue !== value,
+      );
+    }
+    setControls({ ...controls, [name]: currentCheckboxes });
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setControls({ ...controls, [event.target.name]: event.target.value });
   };
 
   if (error) return "There was an error loading the defects.";
   if (isPending) return "Loading...";
   return (
     <div className="flex">
-      <QueryControls handleChange={handleChange} controls={controls} />
+      <QueryControls
+        handleCheckboxChange={handleCheckboxChange}
+        handleInputChange={handleInputChange}
+        queryControls={controls}
+      />
       <DefectList defects={defects} />
     </div>
   );

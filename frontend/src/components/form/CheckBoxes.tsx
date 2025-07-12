@@ -1,27 +1,33 @@
+import type { IDefect } from "../../types/IDefect";
 import lowerAndSnakeCase from "../../utilities/lowerAndSnakeCase";
 interface CheckBoxesProps {
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   items: string[];
   label: string;
+  queryControlField: string;
+  selection: string[] | undefined;
 }
 
 export default function CheckBoxes({
-  handleChange,
+  handleCheckboxChange,
   items,
   label,
+  queryControlField,
+  selection,
 }: CheckBoxesProps) {
   return (
     <>
       <h1>{label}</h1>
-      <div className="flex flex-wrap ">
+      <div className="flex flex-wrap">
         {items.map((item: string) => (
           <div key={item}>
             <input
               className="accent-green-100"
               type="checkbox"
               id={lowerAndSnakeCase(item)}
-              name={lowerAndSnakeCase(item)}
-              onChange={handleChange}
+              name={queryControlField}
+              onChange={handleCheckboxChange}
+              checked={selection?.includes(lowerAndSnakeCase(item))}
             />
             <label
               htmlFor={lowerAndSnakeCase(item)}

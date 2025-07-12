@@ -1,13 +1,15 @@
 import type { IQueryControls } from "../../types/IQueryControls";
 import CheckBoxes from "./CheckBoxes";
 interface QueryControlsProps {
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  controls: Partial<IQueryControls>;
+  handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  queryControls: Partial<IQueryControls>;
 }
 
 export default function QueryControls({
-  handleChange,
-  controls,
+  handleCheckboxChange,
+  handleInputChange,
+  queryControls,
 }: QueryControlsProps) {
   const inputClass = "bg-gray-800";
 
@@ -37,8 +39,8 @@ export default function QueryControls({
             type="string"
             id="registration"
             name="registration"
-            value={controls.aircraft_registration}
-            onChange={handleChange}
+            value={queryControls?.aircraft_registration}
+            onChange={handleInputChange}
           />
           <h1>Reported after</h1>
           <input
@@ -46,8 +48,8 @@ export default function QueryControls({
             type="date"
             id="reported_after"
             name="reported_after"
-            value={controls.reported_after}
-            onChange={handleChange}
+            value={queryControls?.reported_after}
+            onChange={handleInputChange}
           />
           <h1>Reported before</h1>
           <input
@@ -55,18 +57,22 @@ export default function QueryControls({
             type="date"
             id="reported_before"
             name="reported_before"
-            value={controls.reported_before}
-            onChange={handleChange}
+            value={queryControls?.reported_before}
+            onChange={handleInputChange}
           />
           <CheckBoxes
-            handleChange={handleChange}
+            handleCheckboxChange={handleCheckboxChange}
             items={defectTypes}
             label="Defect Types"
+            selection={queryControls?.defect_type}
+            queryControlField="defect_type"
           />
           <CheckBoxes
-            handleChange={handleChange}
+            handleCheckboxChange={handleCheckboxChange}
             items={severity}
             label="Severity"
+            selection={queryControls?.severity}
+            queryControlField="severity"
           />
         </form>
       </div>
