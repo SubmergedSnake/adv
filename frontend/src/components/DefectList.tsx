@@ -1,21 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
 import type { IDefect } from "../types/IDefect";
 import Defect from "./Defect";
-import { fetchDefects } from "../api/fetchDefects";
 
-export default function DefectList() {
-  const {
-    isPending,
-    error,
-    data: defects,
-  } = useQuery({
-    queryKey: ["defects"],
-    queryFn: fetchDefects,
-  });
+interface DefectListProps {
+  defects: IDefect[];
+}
 
-  if (isPending) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
-
+export default function DefectList({ defects }: DefectListProps) {
   return (
     <div className="rounded-lg outline dark:bg-gray-950/50 m-[1em] p-[1em]">
       <table className="border-collapse table-auto">
