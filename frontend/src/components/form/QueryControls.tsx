@@ -1,13 +1,14 @@
-import { useState } from "react";
-import type { QueryControls } from "../../types/QueryControls";
+import type { IQueryControls } from "../../types/IQueryControls";
 import CheckBoxes from "./CheckBoxes";
 interface QueryControlsProps {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  controls: Partial<IQueryControls>;
 }
 
-export default function QueryControls({ handleChange }: QueryControlsProps) {
-  const [controls, setControls] = useState<Partial<QueryControls>>({});
-
+export default function QueryControls({
+  handleChange,
+  controls,
+}: QueryControlsProps) {
   const inputClass = "bg-gray-800";
 
   // Hardcoded for now - should be maintained and retrieved from db, eventually
