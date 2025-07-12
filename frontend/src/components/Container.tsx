@@ -2,18 +2,29 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchDefects } from "../api/fetchDefects";
 import DefectList from "./DefectList";
 import QueryControls from "./form/QueryControls";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { IQueryControls } from "../types/IQueryControls";
+import debounce from "../utilities/debounce";
 
 export default function Container() {
+  const [debouncedControls, setDebouncedControls] = useState({});
   const [controls, setControls] = useState<Partial<IQueryControls>>({});
+
+  const debouncedSetControls = useMemo(
+    () => debounce((nextControls) => setDebouncedControls(nextControls), 1500),
+    [],
+  );
+
+  useEffect(() => {
+    debouncedSetControls(controls);
+  }, [controls, debouncedSetControls]);
 
   const {
     isPending,
     error,
     data: defects,
   } = useQuery({
-    queryKey: ["defects", controls],
+    queryKey: ["defects", debouncedControls],
     queryFn: ({ queryKey }) => fetchDefects(queryKey[1] as IQueryControls),
   });
 
@@ -34,7 +45,10 @@ export default function Container() {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
+    if (name === "aircraft_registration") {
+      value = value.toUpperCase();
+    }
     setControls({ ...controls, [name]: value });
   };
 

@@ -39,8 +39,8 @@ export default function QueryControls({
             type="string"
             id="aircraft_registration"
             name="aircraft_registration"
-            value={queryControls?.aircraft_registration}
             onChange={handleInputChange}
+            value={queryControls.aircraft_registration}
           />
           <h1>Reported after</h1>
           <input

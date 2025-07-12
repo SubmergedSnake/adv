@@ -1,6 +1,8 @@
 import type { IQueryControls } from "../types/IQueryControls";
 
 export async function fetchDefects(controls: IQueryControls) {
+	console.log('fetching defects')
+
 	const response = await fetch('http://localhost:3000/api/defects', {
 		method: 'POST',
 		headers: {
