@@ -28,8 +28,8 @@ export default function QueryControls({
   const severity = ["Low", "Medium", "High"];
 
   return (
-    <div className="flex-none basis-1/4 sticky top-1/4">
-      <div className="flex items-center justify-center lg:mr-[2em] rounded-lg outline dark:bg-gray-950/50 m-[1em] p-[1em]">
+    <div className="flex-none basis-1/4">
+      <div className="sticky top-1/2 -translate-y-1/2 flex items-center justify-center lg:mr-[2em] rounded-lg outline dark:bg-gray-950/50 m-[1em] p-[1em]">
         <form className="flex flex-col space-y-4">
           <h1>Aircraft Registration</h1>
           <input
