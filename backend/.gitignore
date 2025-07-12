@@ -39,7 +39,7 @@ build/
 .eslintcache
 
 # dotenv environment variables
-.env
+# .env allow this for now since this is a test app
 .env.test
 .env.development
 .env.production
