@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { DefectCollection } from '../models/defectSchema';
+import buildQuery from '../database/buildQuery';
 
 export const getDefects = async (req: Request, res: Response, next: NextFunction) => {
 	try {
@@ -12,17 +13,10 @@ export const getDefects = async (req: Request, res: Response, next: NextFunction
 				.limit(100)
 		}
 		else {
-			defects = [
-				{
-					"id": "n8mbej6t",
-					"aircraft_registration": "YG-DSZ",
-					"reported_at": "2025-04-05T03:13:19.142000Z",
-					"defect_type": "Vibration anomaly",
-					"description": "Unusual vibration detected in engine nacelle.",
-					"severity": "High"
-				}
-			]
-
+			const query = buildQuery(queryControls)
+			console.log('THE QUERY')
+			console.log(query)
+			defects = await DefectCollection.find(query)
 		}
 		res.json(defects)
 	}

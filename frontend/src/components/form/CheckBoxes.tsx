@@ -23,11 +23,12 @@ export default function CheckBoxes({
           <div key={item}>
             <input
               className="accent-green-100"
+              data-value={item}
               type="checkbox"
               id={lowerAndSnakeCase(item)}
               name={queryControlField}
               onChange={handleCheckboxChange}
-              checked={selection?.includes(lowerAndSnakeCase(item))}
+              checked={selection?.includes(item)}
             />
             <label
               htmlFor={lowerAndSnakeCase(item)}

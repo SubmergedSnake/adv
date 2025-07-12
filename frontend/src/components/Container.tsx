@@ -18,15 +18,16 @@ export default function Container() {
   });
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked, name, id: value } = event.target;
+    const { checked, name } = event.target;
+    const actualValue = event.target.getAttribute("data-value") || "";
     let currentCheckboxes = [...(controls[name as keyof IQueryControls] || [])];
     if (checked) {
-      if (!currentCheckboxes.includes(value)) {
-        currentCheckboxes.push(value);
+      if (!currentCheckboxes.includes(actualValue)) {
+        currentCheckboxes.push(actualValue);
       }
     } else {
       currentCheckboxes = currentCheckboxes.filter(
-        (currentValue) => currentValue !== value,
+        (currentValue) => currentValue !== actualValue,
       );
     }
     setControls({ ...controls, [name]: currentCheckboxes });
