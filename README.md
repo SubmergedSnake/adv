@@ -10,7 +10,8 @@ The chosen stack for this application was MongoDB (database), ExpressJS (backend
 TailwindCSS was used for applying css styles and Tanstack Query (React Query) was used for performing
 calls to the backend. 
 
-Everything is Dockerized and you can start the entire stack with a single command.
+Everything is Dockerized and you can start the entire stack with a single command. (not quite, read the 
+Setup Instructions)
 
 The foremost motivation for choosing this particular stack was my previous familiarity with 
 the chosen technologies (even though MongoDB and TailwindCSS were somewhat new to me). 
@@ -41,6 +42,13 @@ docker compose up
 ```
 in the root directory.
 
+ALMOST: there's an issue with installing dependencies in the backend container.
+To get the backend to work, first go into the backend directory and run 
+```
+npm i 
+```
+and then go back to the root directory and try again. I hope it works!
+ 
 This will start all the required services, including frontend, backend and database.
 
 The frontend will be available at http://localhost:5173/
