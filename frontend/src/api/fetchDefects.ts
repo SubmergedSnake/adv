@@ -1,5 +1,15 @@
-export async function fetchDefects() {
-	const response = await fetch('http://localhost:3000/api/defects');
+import type { IQueryControls } from "../types/IQueryControls";
+
+export async function fetchDefects(controls: IQueryControls) {
+	console.dir('fetchDefects', controls)
+	const response = await fetch('http://localhost:3000/api/defects', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(controls) // omit 'body' for GET requests
+	});
+
 	if (!response.ok) {
 		throw new Error('Network response was not ok');
 	}

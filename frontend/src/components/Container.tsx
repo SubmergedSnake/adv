@@ -13,12 +13,13 @@ export default function Container() {
     error,
     data: defects,
   } = useQuery({
-    queryKey: ["defects"],
-    queryFn: fetchDefects,
+    queryKey: ["defects", controls],
+    queryFn: ({ queryKey }) => fetchDefects(queryKey[1] as IQueryControls),
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.value, event.target.id);
+    setControls({ ...controls, [event.target.id]: event.target.value });
   };
 
   if (error) return "There was an error loading the defects.";

@@ -5,6 +5,6 @@ import {
 
 const router = Router();
 
-router.get('/', getDefects);
+router.post('/', getDefects);
 
 export default router;
