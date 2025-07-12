@@ -1,11 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 import { DefectCollection } from '../models/defectSchema';
-import buildQuery from '../database/buildQuery';
+import buildQuery from '../database/buildQuery'
 
 export const getDefects = async (req: Request, res: Response, next: NextFunction) => {
 	try {
+		// date issue debugging
+		const oneDoc = await DefectCollection.findOne({});
+		console.log(typeof oneDoc?.reported_at);
+
 		const { body: queryControls } = req
-		console.log("CONTROLS:", queryControls)
 		let defects
 		if (queryControls && Object.keys(queryControls).length == 0) {
 			defects = await DefectCollection.find({})
@@ -14,8 +17,6 @@ export const getDefects = async (req: Request, res: Response, next: NextFunction
 		}
 		else {
 			const query = buildQuery(queryControls)
-			console.log('THE QUERY')
-			console.log(query)
 			defects = await DefectCollection.find(query)
 		}
 		res.json(defects)

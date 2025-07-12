@@ -34,6 +34,8 @@ export default function Container() {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    console.log(`Handling input change for ${name}:${value}`);
     setControls({ ...controls, [event.target.name]: event.target.value });
   };
 

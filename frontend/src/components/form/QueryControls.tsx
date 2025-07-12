@@ -37,8 +37,8 @@ export default function QueryControls({
           <input
             className={inputClass}
             type="string"
-            id="registration"
-            name="registration"
+            id="aircraft_registration"
+            name="aircraft_registration"
             value={queryControls?.aircraft_registration}
             onChange={handleInputChange}
           />
