@@ -28,8 +28,6 @@ export default function DefectList({ defects }: DefectListProps) {
       </div>
     );
   } else {
-    return (
-      <div>No results (note: filtering by date does not work properly)</div>
-    );
+    return <div>No results</div>;
   }
 }

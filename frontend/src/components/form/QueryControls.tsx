@@ -1,16 +1,49 @@
+import { useEffect, useState } from "react";
 import type { IQueryControls } from "../../types/IQueryControls";
 import CheckBoxes from "./CheckBoxes";
 interface QueryControlsProps {
-  handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  queryControls: Partial<IQueryControls>;
+  debouncedSetControls: React.Dispatch<
+    React.SetStateAction<Partial<IQueryControls>>
+  >;
 }
 
 export default function QueryControls({
-  handleCheckboxChange,
-  handleInputChange,
-  queryControls,
+  debouncedSetControls,
 }: QueryControlsProps) {
+  const [queryControls, setQueryControls] = useState<Partial<IQueryControls>>(
+    {},
+  );
+
+  useEffect(() => {
+    debouncedSetControls(queryControls);
+  }, [queryControls]);
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, name } = event.target;
+    const actualValue = event.target.getAttribute("data-value") || "";
+    let currentCheckboxes = [
+      ...(queryControls[name as keyof IQueryControls] || []),
+    ];
+    if (checked) {
+      if (!currentCheckboxes.includes(actualValue)) {
+        currentCheckboxes.push(actualValue);
+      }
+    } else {
+      currentCheckboxes = currentCheckboxes.filter(
+        (currentValue) => currentValue !== actualValue,
+      );
+    }
+    setQueryControls({ ...queryControls, [name]: currentCheckboxes });
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = event.target;
+    if (name === "aircraft_registration") {
+      value = value.toUpperCase();
+    }
+    setQueryControls({ ...queryControls, [name]: value });
+  };
+
   const inputClass = "bg-gray-800";
 
   // Hardcoded for now - should be maintained and retrieved from db, eventually
