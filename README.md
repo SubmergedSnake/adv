@@ -36,18 +36,32 @@ The app is obviously not production-ready yet (for several reasons..!), but if i
 - Frontend: Frontend needs to be bundled to minimize and optimize the code. Which bundler do we use?
 
 ## Setup instructions
+
+NOTE TO REVIEWER: Commits were pushed after the deadline.
+The last commit before the deadline is **38c669b** (this has some issues
+related to running the app, but should somewhat work if you follow the instructions below,
+after the ALMOST:).
+
+Commits made after the deadline (should've) fixed some of the issues with 
+querying by date, flickering which was related to ui logic/state
+and running the app. So the HEAD of this repo is illegitimate as it pertains to 
+the given deadline, but I wanted to fix what I could regardless.
+
 To run Aircraft Defect Viewer, run 
 ```
 docker compose up
 ```
 in the root directory.
 
-ALMOST: there's an issue with installing dependencies in the backend container.
-To get the backend to work, first go into the backend directory and run 
-```
-npm i 
-```
-and then go back to the root directory and try again. I hope it works!
+> **⚠️ Important:**  
+>
+> ALMOST: there's an issue with installing dependencies in the backend container.  
+> To get the backend to work, first go into the backend directory and run  
+> ```
+> npm i 
+> ```
+> and then go back to the root directory and try again. I hope it works!
+
  
 This will start all the required services, including frontend, backend and database.
 
