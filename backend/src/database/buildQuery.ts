@@ -22,13 +22,18 @@ export default (queryControls: Request['body']): RootFilterQuery<Defect> => {
 		query.aircraft_registration = { $eq: aircraftRegistration }
 	}
 
-	// TODO: needs to check for presence of both parameters and do a range query 
-	if (reportedBefore) {
-		query.reported_at = { $lte: new Date(reportedBefore).toISOString() }
+
+	if (reportedBefore && reportedAfter) {
+		query.reported_at = {
+			$gt: new Date(reportedAfter),
+			$lt: new Date(reportedBefore)
+		};
+	} else if (reportedBefore) {
+		query.reported_at = { $lt: new Date(reportedBefore) };
+	} else if (reportedAfter) {
+		query.reported_at = { $gt: new Date(reportedAfter) };
 	}
-	if (reportedAfter) {
-		query.reported_at = { $lt: new Date(reportedAfter).toISOString() }
-	}
+
 
 	return query
 }

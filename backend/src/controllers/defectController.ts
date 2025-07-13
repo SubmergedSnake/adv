@@ -4,10 +4,6 @@ import buildQuery from '../database/buildQuery'
 
 export const getDefects = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// date issue debugging
-		const oneDoc = await DefectCollection.findOne({});
-		console.log(typeof oneDoc?.reported_at);
-
 		const { body: queryControls } = req
 		let defects
 		if (queryControls && Object.keys(queryControls).length == 0) {
@@ -17,7 +13,7 @@ export const getDefects = async (req: Request, res: Response, next: NextFunction
 		}
 		else {
 			const query = buildQuery(queryControls)
-			defects = await DefectCollection.find(query)
+			defects = await DefectCollection.find(query).sort({ reported_at: -1 })
 		}
 		res.json(defects)
 	}

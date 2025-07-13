@@ -27,7 +27,16 @@ export default function Defect({ defect }: { defect: IDefect }) {
       className="hover:bg-gray-700 rounded-xs"
     >
       <td className={tdClass}>{defect.aircraft_registration}</td>
-      <td className={tdClass}>{defect.reported_at.toString()}</td>
+      <td className={tdClass}>
+        {new Date(defect.reported_at).toLocaleString(undefined, {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })}
+      </td>
       <td className={tdClass}>{defect.defect_type}</td>
       <td className={tdClass}>{defect.description}</td>
       <td className={`${tdClass} ${tdClassSeverity}`}>{defect.severity}</td>

@@ -50,3 +50,13 @@ db.createUser({
   pwd: "adv",
   roles: [{ role: "readWrite", db: "adv" }],
 });
+
+db.defects.updateMany({}, [
+  {
+    $set: {
+      reported_at: {
+        $toDate: "$reported_at", // Convert to ISODate regardless of current type
+      },
+    },
+  },
+]);
