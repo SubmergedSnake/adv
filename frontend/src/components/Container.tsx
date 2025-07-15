@@ -23,13 +23,14 @@ export default function Container() {
   } = useQuery({
     queryKey: ["defects", debouncedControls],
     queryFn: ({ queryKey }) => fetchDefects(queryKey[1] as IQueryControls),
+    retry: false,
   });
 
   return (
     <div className="flex">
       <QueryControls debouncedSetControls={debouncedSetControls} />
       {!error && !isPending && <DefectList defects={defects} />}
-      {error && "There was an error loading the defect"}
+      {error && `There was an error loading the defects: ${error} `}
       {isPending && "Loading defects..."}
     </div>
   );

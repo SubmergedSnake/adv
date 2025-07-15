@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
-import mongoose from 'mongoose'
+import mongoose, { Mongoose } from 'mongoose'
+import { errorHandler } from '../middlewares/errorHandler'
 
 dotenv.config()
 
@@ -11,13 +12,13 @@ const user = process.env.DB_USER
 const passWord = process.env.DB_PASSWORD
 
 
-export const db = mongoose.connect((`mongodb://${user}:${passWord}@${dbHost}:${dbPort}/${dbName}`))
-	.then(res => {
-		if (res) {
-			console.log(`Connected succesfully to ${dbName}`)
-		}
-
-	}).catch(err => {
-		console.log('Failed to connect to database', err)
-	})
+export const db = async (): Promise<Mongoose | undefined> => {
+	let connection
+	try {
+		connection = await mongoose.connect((`mongodb://:${passWord}@${dbHost}:${dbPort}/${dbName}`))
+	} catch (error) {
+		console.log('Failed to connect to database', error)
+	}
+	return connection
+}
 

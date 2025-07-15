@@ -12,7 +12,8 @@ export async function fetchDefects(controls: IQueryControls) {
 	});
 
 	if (!response.ok) {
-		throw new Error('Network response was not ok');
+		const res = await response.json()
+		throw new Error(res.message);
 	}
 	return response.json();
 }
